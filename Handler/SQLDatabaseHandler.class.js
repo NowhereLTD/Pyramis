@@ -236,21 +236,23 @@ export class SQLDatabaseHandler extends DatabaseHandler {
         }
       }
 
-      if(whereFields[where].not) {
-        whereSQL = whereSQL + "NOT ";
-      }
+      if(whereFields[where]) {
+        if(whereFields[where].not) {
+          whereSQL = whereSQL + "NOT ";
+        }
 
-      whereSQL = whereSQL + where;
-      if(whereFields[where].operator) {
-        whereSQL = whereSQL + " " + whereFields[where].operator + " ";
-      } else {
-        whereSQL = whereSQL + "=";
-      }
+        whereSQL = whereSQL + where;
+        if(whereFields[where].operator) {
+          whereSQL = whereSQL + " " + whereFields[where].operator + " ";
+        } else {
+          whereSQL = whereSQL + "=";
+        }
 
-      if(whereFields[where].value) {
-        whereSQL = whereSQL + "'" + whereFields[where].value + "'";
-      } else {
-        whereSQL = whereSQL + "'" + whereFields[where] + "'";
+        if(whereFields[where].value) {
+          whereSQL = whereSQL + "'" + whereFields[where].value + "'";
+        } else {
+          whereSQL = whereSQL + "'" + whereFields[where] + "'";
+        }
       }
     }
     return whereSQL;
